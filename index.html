@@ -61,6 +61,14 @@
             margin-top: 40px;
             padding-top: 20px;
         }
+
+        #success-message {
+            display: none;
+            margin-top: 15px;
+            padding: 10px;
+            border: 1px solid green;
+            color: green;
+        }
     </style>
 </head>
 
@@ -118,7 +126,7 @@
     <section id="contact">
         <h2>Contact Us</h2>
 
-        <form>
+        <form id="contact-form">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
 
@@ -135,6 +143,10 @@
             <br><br>
 
             <button type="submit">Send Message</button>
+
+            <div id="success-message">
+                Your message has been sent successfully!
+            </div>
         </form>
     </section>
 
@@ -143,6 +155,24 @@
         <p>&copy; 2026 Group Web Project</p>
         <p>Built collaboratively by our team using Git, GitHub, and Docker.</p>
     </footer>
+
+    <script>
+        const form = document.getElementById("contact-form");
+        const successMessage = document.getElementById("success-message");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+
+            successMessage.textContent =
+                `Thank you, ${name}! Your message has been received.`;
+
+            successMessage.style.display = "block";
+
+            form.reset();
+        });
+    </script>
 
 </body>
 </html>
